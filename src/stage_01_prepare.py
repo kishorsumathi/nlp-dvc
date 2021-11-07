@@ -3,7 +3,7 @@ import os
 from posixpath import split
 import random
 from tqdm import tqdm
-from src.utils.common import read_yaml, create_directory
+from src.utils.common import read_yaml, create_directory, process
 import logging
 
 STAGE="one"
@@ -27,10 +27,16 @@ def main(config_path,params_path):
     preapare_dir= artifacts["PREPARE_DATA"]
     create_directory([os.path.join(artifacts["ARTIFACTS_DIR"],artifacts["PREPARE_DATA"])])
 
-    
-
+    train_data_path=os.path.join(artifacts["ARTIFACTS_DIR"],artifacts["PREPARE_DATA"],artifacts["TRAIN_DATA"])
+    test_data_path=os.path.join(artifacts["ARTIFACTS_DIR"],artifacts["PREPARE_DATA"],artifacts["TEST_DATA"])
     split=params["prepare"]["split"]
     seed=params["prepare"]["seed"]
+
+    with open(input_data,encoding="utf8") as fd_in:
+        with open(train_data_path,"w",encoding="utf8") as fd_out_train:
+            with open(test_data_path,"w",encoding="utf8") as fd_out_test:
+                process(fd_in,fd_out_train,fd_out_test,"<python>",split)
+          
 
     random.seed(seed)
    
