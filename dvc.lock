@@ -1,0 +1,31 @@
+schema: '2.0'
+stages:
+  prepare_data:
+    cmd: python src/stage_01_prepare.py --config=configs/config.yaml --params=params.yaml
+    deps:
+    - path: NLP_data/data.xml
+      md5: a304afb96060aad90176268345e10355
+      size: 37891850
+    - path: configs/config.yaml
+      md5: 70d2309d7caeecfe7221aa2a09eb4d8e
+      size: 238
+    - path: src/stage_01_prepare.py
+      md5: 1961a33164c3656d9eec1ddd5c07cf3e
+      size: 2107
+    - path: src/utils/common.py
+      md5: 3fe6b985afec2fe59549d0062cf69d20
+      size: 391
+    - path: src/utils/data_mng.py
+      md5: dfcfada2d8a529743d600010b6d51043
+      size: 874
+    params:
+      params.yaml:
+        prepare.seed: 200
+        prepare.split: 0.2
+    outs:
+    - path: artifacts/prepared/test.tsv
+      md5: 0a258bf92149e0796d186725854d4f19
+      size: 4700378
+    - path: artifacts/prepared/train.tsv
+      md5: b08a034ddd64c8f4520b1aa5b7788c3d
+      size: 19185941

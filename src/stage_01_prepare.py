@@ -3,7 +3,8 @@ import os
 from posixpath import split
 import random
 from tqdm import tqdm
-from src.utils.common import read_yaml, create_directory, process
+from src.utils.common import read_yaml, create_directory
+from src.utils.data_mng import process
 import logging
 
 STAGE="one"
