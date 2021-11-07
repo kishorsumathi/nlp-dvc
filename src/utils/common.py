@@ -2,6 +2,7 @@ import yaml
 import os
 import pickle
 import json
+import logging
 
 
 def read_yaml(path_to_yaml:str):
@@ -12,4 +13,4 @@ def read_yaml(path_to_yaml:str):
 def create_directory(dirs: list):
     for dir_path in dirs:
           os.makedirs(dir_path,exist_ok=True)
-          print(f"directory is created at {dir_path}")
+          logging.info(f"directory is created at {dir_path}")
