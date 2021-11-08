@@ -2,7 +2,7 @@ import argparse
 import os
 import shutil
 from tqdm import tqdm
-from src.utils.common import read_yaml, create_directory
+from src.utils.common import read_yaml, create_directory,get_df
 from src.utils.data_mng import process
 import logging
 
@@ -27,6 +27,14 @@ def main(config_path,params_path):
 
     featurized_train_data_path = os.path.join(featurized_data_dir_path, artifacts["FEATURIZED_OUT_TRAIN"])
     featurized_test_data_path = os.path.join(featurized_data_dir_path, artifacts["FEATURIZED_OUT_TEST"])
+
+    max_features= params["featurize"]["max_features"]
+    ngrams= params["featurize"]["ngrams"]
+
+    df_train= get_df(train_data_path)
+    print(df_train.head())
+
+
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
     args.add_argument("--config", "-c", default="configs/config.yaml")
